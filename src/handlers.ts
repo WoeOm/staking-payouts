@@ -1,3 +1,4 @@
+import { typesBundleForPolkadotApps } from '@darwinia/types/mix';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import fs from 'fs';
 
@@ -45,6 +46,9 @@ export async function collect({
 	const provider = new WsProvider(ws);
 	const api = await ApiPromise.create({
 		provider,
+		typesBundle: {
+			spec: typesBundleForPolkadotApps.spec,
+		},
 	});
 
 	await collectPayouts({
@@ -67,6 +71,9 @@ export async function ls({
 	const provider = new WsProvider(ws);
 	const api = await ApiPromise.create({
 		provider,
+		typesBundle: {
+			spec: typesBundleForPolkadotApps.spec,
+		},
 	});
 
 	await listPendingPayouts({
